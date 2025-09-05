@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigerian Properties - RealEstate MVP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nigeria-styles.css">
+    <script src="script.js" defer></script>
+    <script src="nigeria-script.js" defer></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>RealEstate MVP</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#properties">Properties</a></li>
+                <li><a href="#" class="active">Nigerian Properties</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="nigeria-hero">
+        <div class="hero-content">
+            <h2>Discover Modern Homes in Nigeria</h2>
+            <p>Luxury properties in prime locations across Nigeria</p>
+            <div class="search-container">
+                <form id="nigeria-search-form">
+                    <div class="search-inputs">
+                        <div class="search-group">
+                            <label for="nigeria-location">Location</label>
+                            <select id="nigeria-location">
+                                <option value="">All Locations</option>
+                                <option value="lagos">Lagos</option>
+                                <option value="abuja">Abuja</option>
+                                <option value="port-harcourt">Port Harcourt</option>
+                                <option value="ibadan">Ibadan</option>
+                                <option value="calabar">Calabar</option>
+                                <option value="enugu">Enugu</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label for="nigeria-property-type">Property Type</label>
+                            <select id="nigeria-property-type">
+                                <option value="">Any</option>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="duplex">Duplex</option>
+                                <option value="bungalow">Bungalow</option>
+                                <option value="mansion">Mansion</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label for="nigeria-price-range">Price Range (₦)</label>
+                            <select id="nigeria-price-range">
+                                <option value="">Any</option>
+                                <option value="0-20000000">₦0 - ₦20M</option>
+                                <option value="20000000-50000000">₦20M - ₦50M</option>
+                                <option value="50000000-100000000">₦50M - ₦100M</option>
+                                <option value="100000000-200000000">₦100M - ₦200M</option>
+                                <option value="200000000+">₦200M+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-button">Search Nigerian Properties</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-locations">
+        <h2 class="section-title">Popular Locations in Nigeria</h2>
+        <div class="location-grid">
+            <div class="location-card" data-location="lagos">
+                <div class="location-image">
+                    <img src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lagos">
+                </div>
+                <div class="location-details">
+                    <h3>Lagos</h3>
+                    <p>Nigeria's economic hub with premium waterfront properties</p>
+                    <span class="property-count">24 Properties</span>
+                </div>
+            </div>
+            <div class="location-card" data-location="abuja">
+                <div class="location-image">
+                    <img src="https://images.unsplash.com/photo-1594733094177-48adcf1864bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Abuja">
+                </div>
+                <div class="location-details">
+                    <h3>Abuja</h3>
+                    <p>The capital city with modern architecture and spacious estates</p>
+                    <span class="property-count">18 Properties</span>
+                </div>
+            </div>
+            <div class="location-card" data-location="port-harcourt">
+                <div class="location-image">
+                    <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Port Harcourt">
+                </div>
+                <div class="location-details">
+                    <h3>Port Harcourt</h3>
+                    <p>Oil city with exclusive residential neighborhoods</p>
+                    <span class="property-count">15 Properties</span>
+                </div>
+            </div>
+            <div class="location-card" data-location="ibadan">
+                <div class="location-image">
+                    <img src="https://images.unsplash.com/photo-1512075135822-67cdd9dd7314?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ibadan">
+                </div>
+                <div class="location-details">
+                    <h3>Ibadan</h3>
+                    <p>Historic city with emerging luxury developments</p>
+                    <span class="property-count">12 Properties</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nigeria-properties" class="properties">
+        <h2 class="section-title">Modern Nigerian Properties</h2>
+        <div class="property-grid" id="nigeria-property-grid">
+            <!-- Nigerian property listings will be loaded here -->
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2 class="section-title">Find Properties by Location</h2>
+        <div class="map-container">
+            <div id="nigeria-map">
+                <!-- Interactive map will be loaded here -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Nigeria_political.png" alt="Nigeria Map" class="placeholder-map">
+                
+                <!-- Map markers for major cities -->
+                <div class="map-marker" style="top: 65%; left: 28%;" data-location="lagos" title="Lagos">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Lagos</span>
+                </div>
+                <div class="map-marker" style="top: 40%; left: 45%;" data-location="abuja" title="Abuja">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Abuja</span>
+                </div>
+                <div class="map-marker" style="top: 70%; left: 45%;" data-location="port-harcourt" title="Port Harcourt">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Port Harcourt</span>
+                </div>
+                <div class="map-marker" style="top: 60%; left: 25%;" data-location="ibadan" title="Ibadan">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Ibadan</span>
+                </div>
+                <div class="map-marker" style="top: 75%; left: 55%;" data-location="calabar" title="Calabar">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Calabar</span>
+                </div>
+                <div class="map-marker" style="top: 55%; left: 55%;" data-location="enugu" title="Enugu">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">Enugu</span>
+                </div>
+            </div>
+            <div class="map-info">
+                <h3>Property Locations</h3>
+                <p>Click on a location marker to see available properties in that area.</p>
+                <div id="location-info">
+                    <p>Select a location on the map to see details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="nigeria-features">
+        <h2 class="section-title">Why Invest in Nigerian Real Estate?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏙️</div>
+                <h3>Rapid Urban Development</h3>
+                <p>Nigeria's cities are experiencing unprecedented growth and development, creating excellent investment opportunities.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Strong ROI Potential</h3>
+                <p>Property values in prime Nigerian locations have shown consistent appreciation over the years.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏘️</div>
+                <h3>Modern Architecture</h3>
+                <p>Contemporary designs meeting international standards with high-quality finishes and amenities.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Investments</h3>
+                <p>Our properties come with verified documentation and clear titles for peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>Great's Chat Bot</h3>
+            <button id="close-chat">×</button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message bot">
+                Hello! I'm Great's Chat Bot. How can I help you find your dream property in Nigeria today?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-message">Send</button>
+        </div>
+        <button id="chat-toggle" class="chat-toggle">Chat with Great's Bot</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RealEstate MVP</h3>
+                <p>Finding your perfect home in Nigeria made simple.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#properties">Properties</a></li>
+                    <li><a href="#">Nigerian Properties</a></li>
+                    <li><a href="payments.html">Payments</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@realestate-mvp.com</p>
+                <p>Phone: (234) 123-4567</p>
+                <p>Address: 25 Victoria Island, Lagos, Nigeria</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RealEstate MVP. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

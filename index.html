@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealEstate MVP - Find Your Dream Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>RealEstate MVP</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="nigeria-properties.html">Nigerian Properties</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Find Your Dream Home</h2>
+            <p>Search from thousands of properties in your area</p>
+            <div class="search-container">
+                <form id="search-form">
+                    <div class="search-inputs">
+                        <div class="search-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="City, neighborhood, or ZIP">
+                        </div>
+                        <div class="search-group">
+                            <label for="property-type">Property Type</label>
+                            <select id="property-type">
+                                <option value="">Any</option>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="condo">Condo</option>
+                                <option value="townhouse">Townhouse</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label for="price-range">Price Range</label>
+                            <select id="price-range">
+                                <option value="">Any</option>
+                                <option value="0-100000">$0 - $100,000</option>
+                                <option value="100000-300000">$100,000 - $300,000</option>
+                                <option value="300000-500000">$300,000 - $500,000</option>
+                                <option value="500000-1000000">$500,000 - $1,000,000</option>
+                                <option value="1000000+">$1,000,000+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-button">Search Properties</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-sections">
+        <div class="featured-section">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nigerian Properties">
+            </div>
+            <div class="featured-content">
+                <h3>Discover Nigerian Properties</h3>
+                <p>Explore our collection of modern homes and investment opportunities across Nigeria's major cities.</p>
+                <a href="nigeria-properties.html" class="featured-button">View Nigerian Properties</a>
+            </div>
+        </div>
+        <div class="featured-section">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Make Payments">
+            </div>
+            <div class="featured-content">
+                <h3>Easy Payment Options</h3>
+                <p>Multiple payment methods including bank transfers and installment plans for your convenience.</p>
+                <a href="payments.html" class="featured-button">Payment Options</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="properties">
+        <h2 class="section-title">Featured Properties</h2>
+        <div class="property-grid">
+            <!-- Property listings will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="property-id">Property ID (if applicable)</label>
+                    <input type="text" id="property-id">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>Great's Chat Bot</h3>
+            <button id="close-chat">×</button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message bot">
+                Hello! I'm Great's Chat Bot. How can I help you with your property search today?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-message">Send</button>
+        </div>
+        <button id="chat-toggle" class="chat-toggle">Chat with Great's Bot</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RealEstate MVP</h3>
+                <p>Finding your perfect home made simple.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#properties">Properties</a></li>
+                    <li><a href="nigeria-properties.html">Nigerian Properties</a></li>
+                    <li><a href="payments.html">Payments</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@realestate-mvp.com</p>
+                <p>Phone: (234) 123-4567</p>
+                <p>Address: 25 Victoria Island, Lagos, Nigeria</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RealEstate MVP. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
