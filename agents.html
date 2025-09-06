@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Agents - Real Estate</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+    h2 { text-align: center; margin: 30px 0; color: #0077ff; }
+
+    .agents-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .agent-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .agent-card:hover { transform: translateY(-5px); }
+
+    .agent-card img {
+      width: 120px; height: 120px;
+      border-radius: 50%; object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .agent-card h3 { margin: 10px 0 5px; color: #333; }
+    .agent-card p { margin: 5px 0; color: #555; font-size: 14px; }
+
+    .btn-group {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 15px;
+      background: #0077ff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover { background: #005ecc; }
+  </style>
+</head>
+<body>
+
+  <h2>Meet Our Agents in Ikeja</h2>
+
+  <div class="agents-container">
+    <!-- Agent 1 -->
+    <div class="agent-card">
+      <img src="https://via.placeholder.com/120" alt="Agent John Doe">
+      <h3>John Doe</h3>
+      <p>📍 Ikeja, Lagos</p>
+      <p>📞 +234 801 234 5678</p>
+      <p>✉️ john.doe@email.com</p>
+      <div class="btn-group">
+        <a href="https://wa.me/2348012345678" class="btn">WhatsApp</a>
+        <a href="check-out.html?agent=John%20Doe" class="btn">Hire Agent</a>
+      </div>
+    </div>
+
+    <!-- Agent 2 -->
+    <div class="agent-card">
+      <img src="https://via.placeholder.com/120" alt="Agent Jane Smith">
+      <h3>Jane Smith</h3>
+      <p>📍 Ikeja, Lagos</p>
+      <p>📞 +234 802 345 6789</p>
+      <p>✉️ jane.smith@email.com</p>
+      <div class="btn-group">
+        <a href="https://wa.me/2348023456789" class="btn">WhatsApp</a>
+        <a href="check-out.html?agent=Jane%20Smith" class="btn">Hire Agent</a>
+      </div>
+    </div>
+
+    <!-- Agent 3 -->
+    <div class="agent-card">
+      <img src="https://via.placeholder.com/120" alt="Agent Michael Johnson">
+      <h3>Michael Johnson</h3>
+      <p>📍 Ikeja, Lagos</p>
+      <p>📞 +234 803 456 7890</p>
+      <p>✉️ michael.j@email.com</p>
+      <div class="btn-group">
+        <a href="https://wa.me/2348034567890" class="btn">WhatsApp</a>
+        <a href="check-out.html?agent=Michael%20Johnson" class="btn">Hire Agent</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -318,3 +318,24 @@ function setupChatbot() {
         return responses[randomIndex];
     };
 }
+window.location.href = `receipt.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&payment=${encodeURIComponent(payment)}&property=3-Bedroom%20Apartment%20in%20Lekki&price=120000`;
+// Redirect to receipt page with query parameters
+window.location.href = "receipt.html?name=" + encodeURIComponent(name) + ...;
+"&email=" + encodeURIComponent(email) +
+"&phone=" + encodeURIComponent(phone) +
+"&payment=" + encodeURIComponent(payment) +
+"&property=3-Bedroom%20Apartment%20in%20Lekki&price=120000";
+app.use(express.static(__dirname));
+window.location.href = `receipt.html?...`
+<p><strong>Agent:</strong> ${data.agent || "N/A"}</p>
+document.getElementById("receiptDetails").innerHTML = `
+  <p><strong>Name:</strong> ${data.name}</p>
+  <p><strong>Email:</strong> ${data.email}</p>
+  <p><strong>Phone:</strong> ${data.phone}</p>
+  <p><strong>Agent:</strong> ${data.agent || "N/A"}</p>
+  <p><strong>Property:</strong> ${data.property}</p>
+  <p><strong>Price:</strong> $${Number(data.price).toLocaleString()}</p>
+  <p><strong>Payment Method:</strong> ${data.payment}</p>
+  <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+`;
+
