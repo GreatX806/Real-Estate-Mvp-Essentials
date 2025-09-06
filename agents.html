@@ -6,7 +6,19 @@
   <title>Our Agents - Real Estate</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+    header { background:#0077ff; color:#fff; padding:15px; text-align:center; }
+    header h1 { margin:0; }
+
     h2 { text-align: center; margin: 30px 0; color: #0077ff; }
+
+    #thankyou-message {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      margin: 20px auto;
+      max-width: 800px;
+    }
 
     .agents-container {
       display: grid;
@@ -23,10 +35,12 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
-      transition: transform 0.2s;
+      transition: transform 0.2s, border 0.2s;
     }
 
     .agent-card:hover { transform: translateY(-5px); }
+
+    .highlight { border: 3px solid #0077ff; }
 
     .agent-card img {
       width: 120px; height: 120px;
@@ -58,48 +72,81 @@
 
     .btn:hover { background: #005ecc; }
   </style>
+  <script>
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const property = params.get("property");
+      const price = params.get("price");
+      const amount = params.get("amount");
+
+      const thankyouDiv = document.getElementById("thankyou-message");
+      if (property && price && amount) {
+        // List of agents by their card IDs
+        const agents = ["agent1", "agent2", "agent3"];
+        const randomAgentId = agents[Math.floor(Math.random() * agents.length)];
+        const randomAgentCard = document.getElementById(randomAgentId);
+
+        // Highlight the chosen agent
+        randomAgentCard.classList.add("highlight");
+
+        // Show thank you message
+        thankyouDiv.innerHTML = `
+          🎉 Thank you for purchasing <strong>${property}</strong> 
+          for <strong>$${amount}</strong>. <br>
+          One of our agents will contact you shortly. <br><br>
+          <em>Assigned Agent: ${randomAgentCard.querySelector("h3").innerText}</em>
+        `;
+      }
+    };
+  </script>
 </head>
 <body>
 
+  <!-- ✅ Logo always visible -->
+  <header>
+    <h1>RealEstate MVP</h1>
+  </header>
+
   <h2>Meet Our Agents in Ikeja</h2>
+  <p id="thankyou-message"></p>
 
   <div class="agents-container">
     <!-- Agent 1 -->
-    <div class="agent-card">
-      <img src="https://via.placeholder.com/120" alt="Agent John Doe">
-      <h3>John Doe</h3>
+    <div class="agent-card" id="agent1">
+      <img src="images/eddd.jpg" alt="Agent Edeoba Uwagbai">
+      <h3>Edeoba Uwagbai</h3>
       <p>📍 Ikeja, Lagos</p>
       <p>📞 +234 801 234 5678</p>
       <p>✉️ john.doe@email.com</p>
       <div class="btn-group">
         <a href="https://wa.me/2348012345678" class="btn">WhatsApp</a>
-        <a href="check-out.html?agent=John%20Doe" class="btn">Hire Agent</a>
+        <a href="book-demo.html" class="btn">Hire Agent</a> <!-- ✅ updated -->
       </div>
     </div>
 
     <!-- Agent 2 -->
-    <div class="agent-card">
-      <img src="https://via.placeholder.com/120" alt="Agent Jane Smith">
-      <h3>Jane Smith</h3>
+    <div class="agent-card" id="agent2">
+      <img src="images/WhatsApp Image 2025-09-06 at 12.54.25_b7b49a54.jpg" alt="Agent Emmanuel Adewemimo">
+      <h3>Emmanuel Adewemimo</h3>
       <p>📍 Ikeja, Lagos</p>
-      <p>📞 +234 802 345 6789</p>
-      <p>✉️ jane.smith@email.com</p>
+      <p>📞 +234 816 434 1786</p>
+      <p>✉️ emmyxa861@gmail.com</p>
       <div class="btn-group">
-        <a href="https://wa.me/2348023456789" class="btn">WhatsApp</a>
-        <a href="check-out.html?agent=Jane%20Smith" class="btn">Hire Agent</a>
+        <a href="https://wa.me/2348164341786" class="btn">WhatsApp</a>
+        <a href="book-demo.html" class="btn">Hire Agent</a> <!-- ✅ updated -->
       </div>
     </div>
 
     <!-- Agent 3 -->
-    <div class="agent-card">
-      <img src="https://via.placeholder.com/120" alt="Agent Michael Johnson">
-      <h3>Michael Johnson</h3>
+    <div class="agent-card" id="agent3">
+      <img src="images/myimage.png" alt="Agent Great Afangide">
+      <h3>Great Afangide</h3>
       <p>📍 Ikeja, Lagos</p>
-      <p>📞 +234 803 456 7890</p>
-      <p>✉️ michael.j@email.com</p>
+      <p>📞 +234 902 178 8348</p>
+      <p>✉️ greatafangide@gmail.com</p>
       <div class="btn-group">
-        <a href="https://wa.me/2348034567890" class="btn">WhatsApp</a>
-        <a href="check-out.html?agent=Michael%20Johnson" class="btn">Hire Agent</a>
+        <a href="https://wa.me/2349021788348" class="btn">WhatsApp</a>
+        <a href="book-demo.html" class="btn">Hire Agent</a> <!-- ✅ updated -->
       </div>
     </div>
   </div>

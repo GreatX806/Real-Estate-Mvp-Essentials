@@ -3,115 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - Real Estate</title>
+  <title>Checkout - RealEstate MVP</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
-    .checkout-container {
-      max-width: 600px; margin: 50px auto; background: #fff; padding: 20px;
-      border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    body { font-family: Arial, sans-serif; background: #f9f9ff; margin: 0; padding: 0; }
+    header { background: #0077ff; padding: 15px; color: #fff; text-align: center; }
+    main { display: flex; justify-content: center; padding: 40px 20px; }
+
+    .checkout-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
     }
-    h2 { text-align: center; margin-bottom: 20px; }
-    label { font-weight: bold; display: block; margin-top: 15px; }
-    input, select {
-      width: 100%; padding: 10px; margin-top: 5px;
-      border: 1px solid #ccc; border-radius: 6px;
+
+    .checkout-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0077ff;
     }
-    button {
-      width: 100%; padding: 15px; background: #0077ff; border: none; color: #fff;
-      font-size: 16px; border-radius: 6px; margin-top: 20px; cursor: pointer;
+
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-weight: bold; }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
     }
-    button:hover { background: #005ecc; }
-    .agent-info {
-      background: #e6f2ff;
-      border: 1px solid #0077ff;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-size: 14px;
+
+    .summary {
+      background: #f4f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #cce0ff;
     }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #0077ff;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    .btn:hover { background: #005ecc; }
+
+    .secondary-btn {
+      background: #ccc;
+      color: #333;
+    }
+    .secondary-btn:hover { background: #aaa; }
   </style>
-</head>
-<body>
-
-  <div class="checkout-container">
-    <h2>Checkout</h2>
-    
-    <!-- ✅ Property Options -->
-    <label for="property">Choose Property</label>
-    <select id="property" required>
-      <option value="">-- Select Property --</option>
-      <option value="3-Bedroom Apartment in Lekki|120000">3-Bedroom Apartment in Lekki - $120,000</option>
-      <option value="Luxury Duplex in Ikeja|250000">Luxury Duplex in Ikeja - $250,000</option>
-      <option value="2-Bedroom Flat in Surulere|80000">2-Bedroom Flat in Surulere - $80,000</option>
-      <option value="Penthouse in Victoria Island|500000">Penthouse in Victoria Island - $500,000</option>
-    </select>
-
-    <!-- ✅ Agent Info (auto-filled if coming from agents.html) -->
-    <div id="agentInfo" class="agent-info" style="display: none;"></div>
-
-    <form id="checkoutForm">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" required>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" required>
-
-      <label for="phone">Phone</label>
-      <input type="tel" id="phone" required>
-
-      <label for="payment">Payment Method</label>
-      <select id="payment" required>
-        <option value="">-- Select Payment Method --</option>
-        <option value="card">Credit/Debit Card</option>
-        <option value="bank">Bank Transfer</option>
-        <option value="crypto">Crypto</option>
-      </select>
-
-      <button type="submit">Confirm Purchase</button>
-    </form>
-  </div>
 
   <script>
-    // ✅ Function to read query params
-    function getQueryParams() {
-      const params = {};
-      const queryString = window.location.search.slice(1).split("&");
-      queryString.forEach(param => {
-        const [key, value] = param.split("=");
-        params[key] = decodeURIComponent(value || "");
-      });
-      return params;
+    function updateSummary() {
+      const propertySelect = document.getElementById("property");
+      const selectedOption = propertySelect.options[propertySelect.selectedIndex];
+      const summaryDiv = document.getElementById("summary");
+
+      if (propertySelect.value) {
+        summaryDiv.innerHTML = `
+          <strong>Selected Property:</strong> ${selectedOption.value}<br>
+          <strong>Price:</strong> $${selectedOption.dataset.price}
+        `;
+      } else {
+        summaryDiv.innerHTML = "Please select a property.";
+      }
     }
 
-    const data = getQueryParams();
+    function handleCheckout(event) {
+      event.preventDefault();
 
-    // ✅ Show agent info if passed from agents.html
-    if (data.agent) {
-      const agentBox = document.getElementById("agentInfo");
-      agentBox.style.display = "block";
-      agentBox.innerHTML = `👤 You are working with <strong>${data.agent}</strong>`;
-    }
+      const propertySelect = document.getElementById("property");
+      const property = propertySelect.value;
+      const price = propertySelect.selectedOptions[0].dataset.price;
+      const amount = document.getElementById("amount").value;
+      const card = document.getElementById("card").value;
 
-    // ✅ Handle form submit
-    document.getElementById("checkoutForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const propertySelection = document.getElementById("property").value;
-      if (!propertySelection) {
+      if (!property) {
         alert("Please select a property.");
         return;
       }
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+      if (!card || card.length < 12) {
+        alert("Please enter a valid bank card number.");
+        return;
+      }
 
-      const [propertyName, price] = propertySelection.split("|");
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const payment = document.getElementById("payment").value;
-
-      // Redirect to receipt page with all details
-      window.location.href = `receipt.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&payment=${encodeURIComponent(payment)}&property=${encodeURIComponent(propertyName)}&price=${encodeURIComponent(price)}&agent=${encodeURIComponent(data.agent || "")}`;
-    });
+      // Redirect to receipt page
+      window.location.href = `receipt.html?property=${encodeURIComponent(property)}&price=${price}&amount=${amount}&card=${card}`;
+    }
   </script>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
 
+  <main>
+    <div class="checkout-card">
+      <h2>Complete Your Purchase</h2>
+      <form onsubmit="handleCheckout(event)">
+        <div class="form-group">
+          <label for="property">Select Property:</label>
+          <select id="property" onchange="updateSummary()" required>
+            <option value="">-- Choose a Property --</option>
+            <option value="3-Bedroom Apartment in Lekki" data-price="120000">3-Bedroom Apartment in Lekki — $120,000</option>
+            <option value="Luxury Duplex in Ikeja" data-price="250000">Luxury Duplex in Ikeja — $250,000</option>
+            <option value="2-Bedroom Flat in Surulere" data-price="80000">2-Bedroom Flat in Surulere — $80,000</option>
+            <option value="Penthouse in Victoria Island" data-price="500000">Penthouse in Victoria Island — $500,000</option>
+          </select>
+        </div>
+
+        <div id="summary" class="summary">
+          Please select a property.
+        </div>
+
+        <div class="form-group">
+          <label for="amount">Enter Payment Amount ($):</label>
+          <input type="number" id="amount" placeholder="Enter amount" required>
+        </div>
+
+        <div class="form-group">
+          <label for="card">Bank Card Number:</label>
+          <input type="text" id="card" placeholder="Enter card number" required>
+        </div>
+
+        <button type="submit" class="btn">Pay & Generate Receipt</button>
+        <a href="index.html" class="btn secondary-btn">← Back to Homepage</a>
+      </form>
+    </div>
+  </main>
 </body>
 </html>

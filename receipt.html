@@ -3,79 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Receipt - Real Estate</title>
+  <title>Receipt - RealEstate MVP</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
-    .receipt-container {
-      max-width: 600px; margin: 50px auto; background: #fff; padding: 20px;
-      border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    body { font-family: Arial, sans-serif; background: #f9f9ff; margin: 0; padding: 0; }
+    header { background: #0077ff; padding: 15px; color: #fff; text-align: center; }
+    main { display: flex; justify-content: center; padding: 40px 20px; }
+    .receipt-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
     }
-    h2 { text-align: center; color: #0077ff; }
-    .details { margin-top: 20px; }
-    .details p { margin: 10px 0; }
-    .footer { text-align: center; margin-top: 30px; font-size: 14px; color: #555; }
-    .btn-group { text-align: center; margin-top: 20px; }
-    button {
-      padding: 10px 20px; margin: 5px;
-      background: #0077ff; color: #fff; border: none;
-      border-radius: 6px; cursor: pointer; font-size: 16px;
+    h2 { color: #0077ff; text-align: center; }
+    .receipt-details { margin-top: 20px; font-size: 16px; }
+    .receipt-details p { margin: 8px 0; }
+    .btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      margin-top: 15px;
+      background: #0077ff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
     }
-    button:hover { background: #005ecc; }
+    .btn:hover { background: #005ecc; }
+    .secondary { background: #555; }
   </style>
+  <script>
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const property = params.get("property");
+      const price = params.get("price");
+      const amount = params.get("amount");
+      const card = params.get("card");
+
+      document.getElementById("receipt-details").innerHTML = `
+        <p><strong>Property:</strong> ${property}</p>
+        <p><strong>Listed Price:</strong> $${price}</p>
+        <p><strong>Paid Amount:</strong> $${amount}</p>
+        <p><strong>Payment Method:</strong> Bank Card (**** **** **** ${card.slice(-4)})</p>
+        <p><strong>Status:</strong> ✅ Payment Successful</p>
+      `;
+    };
+  </script>
 </head>
 <body>
+  <header>
+    <h1>Payment Receipt</h1>
+  </header>
 
-  <div class="receipt-container" id="receiptContent">
-    <h2>Payment Receipt</h2>
-    <div class="details" id="receiptDetails"></div>
-    <div class="btn-group">
-      <button onclick="window.print()">🖨️ Print Receipt</button>
-      <button onclick="downloadPDF()">⬇️ Download PDF</button>
+  <main>
+    <div class="receipt-card">
+      <h2>Thank You for Your Purchase!</h2>
+      <div id="receipt-details" class="receipt-details"></div>
+      <!-- 🔗 New Links -->
+      <a href="agents.html" class="btn">Meet Your Agent</a>
+      <a href="index.html" class="btn secondary">← Back to Homepage</a>
     </div>
-    <div class="footer">Thank you for your purchase! We will contact you soon.</div>
-  </div>
-
-  <!-- jsPDF for PDF export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <script>
-    // Get query params from checkout.html
-    function getQueryParams() {
-      const params = {};
-      const queryString = window.location.search.slice(1).split("&");
-      queryString.forEach(param => {
-        const [key, value] = param.split("=");
-        params[key] = decodeURIComponent(value || "");
-      });
-      return params;
-    }
-
-    const data = getQueryParams();
-    document.getElementById("receiptDetails").innerHTML = `
-      <p><strong>Name:</strong> ${data.name}</p>
-      <p><strong>Email:</strong> ${data.email}</p>
-      <p><strong>Phone:</strong> ${data.phone}</p>
-      <p><strong>Property:</strong> ${data.property}</p>
-      <p><strong>Price:</strong> $${Number(data.price).toLocaleString()}</p>
-      <p><strong>Payment Method:</strong> ${data.payment}</p>
-      <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-    `;
-
-    // Download receipt as PDF
-    function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.text("Payment Receipt", 20, 20);
-      doc.text("Name: " + data.name, 20, 40);
-      doc.text("Email: " + data.email, 20, 50);
-      doc.text("Phone: " + data.phone, 20, 60);
-      doc.text("Property: " + data.property, 20, 70);
-      doc.text("Price: $" + Number(data.price).toLocaleString(), 20, 80);
-      doc.text("Payment Method: " + data.payment, 20, 90);
-      doc.text("Date: " + new Date().toLocaleString(), 20, 100);
-      doc.save("receipt.pdf");
-    }
-  </script>
-
+  </main>
 </body>
 </html>
